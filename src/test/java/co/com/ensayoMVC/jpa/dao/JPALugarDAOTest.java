@@ -6,10 +6,9 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
-import co.com.ensayoMVC.jpa.entities.Lugar;
 
 public class JPALugarDAOTest {
 
@@ -27,11 +26,11 @@ public class JPALugarDAOTest {
 	public void test() {
 		
 		context = new ClassPathXmlApplicationContext("Spring-Datasource-JPA.xml");
-		
-		 LugarDAO lugarDAO = (LugarDAO) context.getBean("lugar");
-		 int lugarId =1;
+		//BeanFactory factoryObj = new ClassPathXmlApplicationContext("file:Spring-Datasource-JPA.xml");
+		 LugarDAO lugarDAO = (LugarDAO) context.getBean(LugarDAO.class);		 
 		 
-		assertNotNull( lugarDAO.findLugarById(lugarId));
+		assertNotNull( lugarDAO.findLugarById(1));
+		 ((AbstractApplicationContext) context).close();
 	}
 
 }

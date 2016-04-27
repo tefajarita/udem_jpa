@@ -9,8 +9,12 @@
   http://www.springframework.org/schema/context 
   http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="co.com.hobbies.jpa" />
+   <context:component-scan base-package="co.com.ensayoMVC.jpa.dao">
+        <context:include-filter type="annotation"
+            expression="org.springframework.stereotype.Repository" />
+    </context:component-scan>
 <!-- PersistenceUnitName nombre de la apunta en el persistence  -->
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="lugar" />
