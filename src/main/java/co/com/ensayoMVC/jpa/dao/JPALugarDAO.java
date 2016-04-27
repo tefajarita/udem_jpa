@@ -6,9 +6,10 @@ package co.com.ensayoMVC.jpa.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.sql.DataSource;
+
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.com.ensayoMVC.jpa.entities.Lugar;
 
@@ -21,7 +22,7 @@ import co.com.ensayoMVC.jpa.entities.Lugar;
  */
 @Repository
 public class JPALugarDAO implements LugarDAO {
-	
+	 @PersistenceContext(name="lugar")
 	private EntityManager em;
 	
 	public EntityManager getEntityManager() {
@@ -32,18 +33,20 @@ public class JPALugarDAO implements LugarDAO {
 	/**
 	 * @param em the em to set
 	 */
-	 @PersistenceContext
+	
 	public void setEntityManager(EntityManager em) {
 		this.em = em;
 	}
 
 	 
-	 private DataSource dataSource;
+	/* private DataSource dataSource;
 		
 		public void setDataSource(DataSource dataSource){
 			this.dataSource=dataSource;
 			
-		}
+		}*/
+		
+	@Transactional	
 	public Lugar findLugarById(int lugarId) {
 		
 		Query q =(Query) getEntityManager().createQuery("SELECT l FROM Lugar l WHERE id = "+lugarId);

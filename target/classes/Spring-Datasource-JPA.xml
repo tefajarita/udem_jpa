@@ -25,6 +25,11 @@
 			</map>
 		</property>
 	</bean>
+	
+	 <bean class="org.springframework.orm.jpa.JpaTransactionManager"
+        id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
