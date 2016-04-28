@@ -1,5 +1,7 @@
 package co.com.ensayoMVC.jpa.dao;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,6 +17,6 @@ public interface LugarDAO {
 	
 	
 	public Lugar findLugarById(int lugarId);
-		
+	
 	
 }

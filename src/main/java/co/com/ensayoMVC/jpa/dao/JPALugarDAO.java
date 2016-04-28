@@ -3,6 +3,7 @@
  */
 package co.com.ensayoMVC.jpa.dao;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -46,13 +47,23 @@ public class JPALugarDAO implements LugarDAO {
 			
 		}*/
 		
-	@Transactional	
+		
 	public Lugar findLugarById(int lugarId) {
 		
-		Query q =(Query) getEntityManager().createQuery("SELECT l FROM Lugar l WHERE id = "+lugarId);
-		Lugar result = (Lugar) q.getSingleResult();
+		Query q =(Query) getEntityManager().createQuery("SELECT l FROM Lugar l WHERE l.id =:lugarId");
+		q.setParameter("lugarId", lugarId);
+		Lugar result = (Lugar) q.getSingleResult();		
 		return result;
 	}
+
+
+	
+
+
+
+	
+	
+	
 
 	
 	
