@@ -10,9 +10,10 @@ import javax.persistence.Query;
 
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import co.com.ensayoMVC.DAO.LugarDAO;
 import co.com.ensayoMVC.jpa.entities.Lugar;
+import co.com.ensayoMVC.model.LugarDTO;
 
 
 
@@ -48,12 +49,24 @@ public class JPALugarDAO implements LugarDAO {
 		}*/
 		
 		
-	public Lugar findLugarById(int lugarId) {
+	public LugarDTO findLugarById(int lugarId) {
 		
 		Query q =(Query) getEntityManager().createQuery("SELECT l FROM Lugar l WHERE l.id =:lugarId");
 		q.setParameter("lugarId", lugarId);
-		Lugar result = (Lugar) q.getSingleResult();		
-		return result;
+		Lugar result = (Lugar) q.getSingleResult();	
+		
+		//se crea el dto 
+		LugarDTO lugarDTO  = new LugarDTO();
+		lugarDTO.setNombre(result.getNombre());
+		lugarDTO.setDireccion(result.getDireccion());
+		lugarDTO.setAlt(result.getAlt());
+		lugarDTO.setLon(result.getLon());
+		lugarDTO.setTelefono(result.getTelefono());
+		lugarDTO.setDescripcion(result.getDescripcion());
+		lugarDTO.setHorario(result.getHorario());
+		lugarDTO.setCorreo(result.getCorreo());
+		
+		return lugarDTO;
 	}
 
 
