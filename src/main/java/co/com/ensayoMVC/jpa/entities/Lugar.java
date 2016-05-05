@@ -1,11 +1,18 @@
 package co.com.ensayoMVC.jpa.entities;
 
+
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name="lugar")
@@ -26,7 +33,7 @@ public class Lugar {
 	}
 
 	public Lugar (){
-		
+		super();
 	}
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -57,7 +64,25 @@ public class Lugar {
 	@Column(name="correo")
 	private String correo;
 	
+	@OneToMany(mappedBy = "lugar", targetEntity=Barbero.class,fetch=FetchType.EAGER)
+	private ArrayList<Barbero> barberos;
 	
+
+
+	/**
+	 * @return the barberos
+	 */
+	public ArrayList<Barbero> getBarberos() {
+		return barberos;
+	}
+
+	/**
+	 * @param barberos the barberos to set
+	 */
+	public void setBarberos(ArrayList<Barbero> barberos) {
+		this.barberos = barberos;
+	}
+
 	public Lugar(String nombre, String direccion, long alt, long lon,String telefono,String descripcion, String horario,
 			String correo) {
 		this.nombre=nombre;

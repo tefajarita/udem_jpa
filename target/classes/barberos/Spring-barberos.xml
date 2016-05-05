@@ -3,7 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="lugarDAO" class="co.com.ensayoMVC.jpa.dao.JPALugarDAO">
+	<bean id="barberoDAO" class="co.com.ensayoMVC.jpa.dao.JPABarberoDAO">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+
 </beans>

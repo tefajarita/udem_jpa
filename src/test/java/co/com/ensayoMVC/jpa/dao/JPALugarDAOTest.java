@@ -2,12 +2,15 @@ package co.com.ensayoMVC.jpa.dao;
 
 
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import co.com.ensayoMVC.DAO.LugarDAO;
+import co.com.ensayoMVC.model.BarberoDTO;
 import co.com.ensayoMVC.model.LugarDTO;
 
 public class JPALugarDAOTest {
@@ -35,6 +38,34 @@ public class JPALugarDAOTest {
 		    LugarDTO lugar = lugarDAO.findLugarById(1);
 		    System.out.println("Nombre: " + lugar.getNombre());
 		    System.out.println("Direccion: " + lugar.getDireccion());
+			
+		}catch(Exception e){
+			System.out.println("Error a ejecutar consulta");
+		} finally {
+			context.close();
+		}
+	}
+	
+
+	@Test
+	public void testlistLugar() {
+		
+		try {
+	    	 // Se obtiene el contexto de la aplicacion
+		   
+			context = new ClassPathXmlApplicationContext("Spring-Datasource-JPA.xml");
+
+		    // Se obtiene el servicio que implementa los servicios de la base de datos
+		    LugarDAO lugarDAO = (LugarDAO) context.getBean(LugarDAO.class);
+
+		    
+			List<LugarDTO> lugar;
+			lugar = lugarDAO.listLugar();
+			for (LugarDTO l : lugar) {
+
+				System.out.println(l.getNombre() + " " + l.getDescripcion());
+			}
+
 			
 		}catch(Exception e){
 			System.out.println("Error a ejecutar consulta");
